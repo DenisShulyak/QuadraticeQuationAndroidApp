@@ -37,7 +37,19 @@ class MainActivity : AppCompatActivity() {
 
         if (numA != null && numB != null && numC != null) {
             if (numA.equals(0.0)){
-                textView.text = "Коэффициент 'a' не может быть равен 0!"
+                var result = "";
+                if(numB.equals(0.0)){
+                    if(numC.equals(0.0)){
+                        result = "a, b, c = 0.\nБесконечное множество решений";
+                    }
+                    else{
+                        result = "a, b = 0. c ≠ 0.\nРешений нет";
+                    }
+                }
+                else{
+                    result = "a = 0, b ≠ 0, c ≠ 0. Уравнение линейное.\nx = " + (-numC/numB);
+                }
+                textView.text = result;
                 return
             }
             val discriminant = numB * numB - 4 * numA * numC
@@ -48,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             val x1 = (-numB + Math.sqrt(discriminant)) / (2 * numA)
             val x2 = (-numB - Math.sqrt(discriminant)) / (2 * numA)
             if(x1 == x2){
-                textView.text = "x = " + x1
+                textView.text = "x1 = x2 = " + x1
             }
             else{
                 textView.text = "x1 = " + x1 + "\n" + "x2 = " + x2
